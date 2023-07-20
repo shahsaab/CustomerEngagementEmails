@@ -1,0 +1,32 @@
+{
+  "name": "customerengagementemails",
+  "version": "1.0.0",
+  "description": "This API will forward emails to customers with HTML body",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shahsaab/CustomerEngagementEmails.git"
+  },
+  "keywords": [
+    "Email",
+    "HTML",
+    "Customer",
+    "Engagement"
+  ],
+  "author": "Adnan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shahsaab/CustomerEngagementEmails/issues"
+  },
+  "homepage": "https://github.com/shahsaab/CustomerEngagementEmails#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "nodemailer": "^6.9.4"
+  }
+}
