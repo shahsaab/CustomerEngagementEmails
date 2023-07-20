@@ -14,18 +14,23 @@ app.use(bodyParser.json());
 
 //app.use('/api', api);
 
-app.get('/', function(req, res){
+app.get('/', function (req, res) {
     res.send('Hello from server');
 })
 
-app.post('/sendEmail', async function(req, res){
-    console.log(req.body);
-    await sendEmail();
 
-    res.status(200).send({"message": "Email Sent"});
+app.post('/sendEmail', async function (req, res) {
+    try {
+        await sendEmail(req.body);
+        res.status(200).send({ "message": "Email Sent" });
+    }
+    catch (err) {
+        res.status(500).send({ "message": err });
+    }
 });
 
-async function sendEmail(){
+
+async function sendEmail(HTMLbody) {
     const transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
         port: 587,
@@ -35,13 +40,13 @@ async function sendEmail(){
         }
     });
     await transporter.sendMail({
-        from: 'syd.adnanahmed@gmail.com',
-        to: 'syed.adnan@turf.pk;syed.adnanahmed@live.com',
-        subject: 'Test Email Subject',
-        html: '<h1>Example HTML Message Body</h1>'
+        from: '"ERA by Turf"<syd.adnanahmed@gmail.com>',
+        to: HTMLbody.Recepients,
+        subject: HTMLbody.Subject,
+        html: HTMLbody.EmailBody
     });
 }
 
-app.listen(PORT, function(){
+app.listen(PORT, function () {
     console.log('Server running on localhost:' + PORT);
 });
